@@ -7,7 +7,7 @@
 | resnet-18 | 85.4%  |
 |    VGG    | 89.4%  |
 |    VIT    | 68.59% |
-### lenet
+# lenet
 
 训练过程中的loss以及accuracy如下图所示：
 ![image](./pictures/lenet_loss.png)
@@ -28,7 +28,7 @@
 PR曲线：
 
 ![image](./pictures/lenet_PR.png)
-### resnet-18
+# resnet-18
 
 训练过程中的loss以及accuracy如下图所示：
 ![image](./pictures/resnet_loss.png)
@@ -50,9 +50,9 @@ PR曲线：
 
 ![image](./pictures/resnet_PR.png)
 
-### vgg
+# vgg
 
-训练过程中的loss以及accuracy如下图所示(不同曲线为同一训练过程中的不同阶段）：
+训练过程中的loss以及accuracy如下图所示(由于vgg训练较慢，因而在训练过程中并没有像之前两个模型一样一次训练到底，而是每次只训练一个较小的epochs，保存相应checkpoints，并根据loss和accuracy判断是否需要更改参数，图中不同曲线为同一训练过程中的不同阶段）：
 ![image](./pictures/vgg_loss.png)
 ![image](./pictures/vgg_accuracy.png)
 最终测试结果：
@@ -71,8 +71,16 @@ PR曲线：
 
 ![image](./pictures/vgg_PR.png)
 
-### vit
+# vit
 训练集以及测试集的loss以及accuracy如下图所示：
 ![image](./pictures/transformers.png)
 
-- 总结：四种模型中resnet-18以及vgg综合表现良好，lenet由于结构较为简效果并不理想，而vit可能由于结构较为复杂，训练集较少，上下波动显著，难以达到收敛，同时准确率也不如传统模型resent-18，vgg。
+- 总结：四种模型中resnet-18以及vgg综合表现良好，lenet模型由于结构较为简单，虽然在训练集上能够达到较好的效果，然而泛化能力较差，在测试集上表现不佳；而vit可能由于结构较为复杂，训练集较少，训练过程中loss与accuracy振荡显著，难以达到收敛，同时准确率也不如传统模型resent-18，vgg。
+# vim&vig
+分别测试vim及vig模型在tiny-voc数据集上的准确度，结果如下所示：
+|   模型    | Accuracy |
+| :-------: | :----: |
+|   vim   |  68.43% |
+| vig | 71.79%  |
+|    vig_ema    | 69.07%  |
+
