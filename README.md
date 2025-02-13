@@ -77,10 +77,34 @@ PR曲线：
 
 - 总结：四种模型中resnet-18以及vgg综合表现良好，lenet模型由于结构较为简单，虽然在训练集上能够达到较好的效果，然而泛化能力较差，在测试集上表现不佳；而vit可能由于结构较为复杂，训练集较少，训练过程中loss与accuracy振荡显著，难以达到收敛，同时准确率也不如传统模型resent-18，vgg。
 # vim&vig
+由于电脑算力有限，因而在实际训练过程中，选取vim-tiny（7M）以及vig-tiny（5.6M）进行训练及测试。
 分别测试vim及vig模型在tiny-voc数据集上的准确度，结果如下所示：
 |   模型    | Accuracy |
 | :-------: | :----: |
 |   vim   |  68.43% |
 | vig | 71.79%  |
 |    vig_ema    | 69.07%  |
+
+结果如下图所示：
+- **vim:**
+![image](./pictures/vim.png)
+训练过程中的loss及accuracy：
+![image](./pictures/vim_loss.png)
+![image](./pictures/vim_acc1.png)
+- **vig:**
+![image](./pictures/vig.png)
+![image](./pictures/vig_acc1.png)
+![image](./pictures/vig_ema_acc1.png)
+
+详情请见vim_log以及vig_logs。
+
+**总结**：vim以及vig在tiny-voc上表现也较为一般，准确率仅有70%左右，可能存在的原因：
+
+
+- 训练过程中参数选取不合理，导致模型过早收敛；
+
+- 图像预处理过于简单（仅使用了缩放，旋转，改变对比度的方法，但由于训练过程较慢就没用重新修改图像进行测试），导致模型泛化能力较差
+
+- 数据集数量较少，原项目中使用IMG1K进行训练及测试，而本次数据集仅含6624张图像，大模型在小数据集上可能存在过拟合。
+ 
 
